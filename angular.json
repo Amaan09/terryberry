@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "terryberry"
+    }
+  },
+  "defaultProject": "terryberry",
+  "cli": {
+    "analytics": false
+  }
 }
