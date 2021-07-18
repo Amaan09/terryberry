@@ -1,0 +1,18 @@
+<div>
+  <mat-toolbar fxLayout="row" fxLayoutAlign="start center">
+      <span
+        class="tabs"
+        [routerLink]="['/']"
+        [routerLinkActive]="['active-tab']"
+        [routerLinkActiveOptions]="{exact:true}">
+        Home
+      </span>
+      <span
+        class="tabs"
+        [routerLink]="['/aboutme/myinfo']"
+        [routerLinkActive]="['active-tab']"
+        [routerLinkActiveOptions]="{exact:true}">
+        About Me
+      </span>
+  </mat-toolbar>
+</div>

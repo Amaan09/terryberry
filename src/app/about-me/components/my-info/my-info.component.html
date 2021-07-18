@@ -1,1 +1,34 @@
-<p>my-info works!</p>
+<div fxLayout="row" fxLayoutAlign="center center">
+
+  <mat-card class="myinfo-card">
+    <div class="myinfo-card-header">
+      My Info
+    </div>
+    <div class="myinfo-card-list" fxLayout="column" fxLayoutAlign="space-between start">
+      <div
+        class="myinfo-card-list-item"
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+        *ngFor="let item of displayedItems">
+        <span fxFlex="40" class="myinfo-card-list-item-header">
+          {{item.toUpperCase()}}
+        </span>
+        <span fxFlex="40">
+          {{ item === 'hobbies' && myInfo[item] ? myInfo[item].join(', ') : myInfo[item]}}
+        </span>
+        <span fxFlex="20">
+          <mat-icon
+            class="myinfo-card-list-item-edit"
+            (click)="editMyInfo()">
+            edit
+          </mat-icon>
+          <mat-divider></mat-divider>
+        </span>
+      </div>
+    </div>
+    <mat-card-actions>
+      <button mat-stroked-button color="primary">LIKE</button>
+      <button mat-stroked-button color="primary">SHARE</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

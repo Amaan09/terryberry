@@ -1,0 +1,33 @@
+.myinfo-card {
+  margin-top: 50px;
+  width: 800px;
+
+  .myinfo-card-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 24px;
+  }
+
+  .myinfo-card-list {
+    .myinfo-card-list-item {
+      width: 100%;
+      margin-bottom: 32px;
+      .mat-icon {
+        cursor: pointer;
+      }
+    }
+
+    .myinfo-card-list-item-header {
+      font-weight: 500;
+    }
+  }
+
+}
+
+.mat-card-header-text {
+  margin: 0;
+}
