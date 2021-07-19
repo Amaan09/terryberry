@@ -3,27 +3,27 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { ToastrService } from 'ngx-toastr';
 import { LoaderService } from '../../../services/loader/loader.service';
 import { MyInfoRepositoryService } from '../../../services/repositories/my-info-repository.service';
-import { myInfo } from '../../../shared/models/my-info/my-info.model';
+import { MyInfo } from '../../../shared/models/my-info/my-info.model';
 
 
-interface myInfoDetails  {
+interface MyInfoDetails  {
   name: string;
   value: string;
   isArray: boolean;
 }
 
 @Component({
-  selector: 'my-info',
+  selector: 'app-my-info',
   templateUrl: './my-info.component.html',
   styleUrls: ['./my-info.component.scss'],
 })
 export class MyInfoComponent implements OnInit {
   myInfoForm: FormGroup;
-  myInfo: myInfo = {} as myInfo;
-  editMode: boolean = false;
-  dataLoaded: boolean = false;
+  myInfo = {} as MyInfo;
+  editMode = false;
+  dataLoaded = false;
 
-  displayedItems: myInfoDetails[] = [
+  displayedItems: MyInfoDetails[] = [
     { name: 'Name', value: 'name', isArray: false },
     { name: 'Age', value: 'age', isArray: false },
     { name: 'Gender', value: 'gender', isArray: false },
@@ -53,8 +53,8 @@ export class MyInfoComponent implements OnInit {
   getMyInfo(): void {
     this.loader.setLoader(true);
     this.myInfoService.getMyInfo().subscribe(
-      (myInfo) => {
-        this.myInfo = myInfo;
+      (result: MyInfo) => {
+        this.myInfo = result;
         this.presetFormValues();
         this.loader.setLoader(false);
         this.dataLoaded = true;
@@ -72,7 +72,7 @@ export class MyInfoComponent implements OnInit {
     this.myInfoForm.patchValue({
       name: name,
       age: age,
-      gender: gender,
+      gender: gender
     });
 
     if (hobbies) for (const hobby of hobbies) this.addHobbies(hobby);
@@ -91,8 +91,8 @@ export class MyInfoComponent implements OnInit {
   onSubmit(): void {
     this.editMode = !this.editMode;
     this.toastr.success('Saved Succesfully');
-    this.myInfoService.saveMyInfo(this.myInfoForm.value as myInfo);
-    this.myInfo = { ...this.myInfoForm.value } as myInfo;
+    this.myInfoService.saveMyInfo(this.myInfoForm.value as MyInfo);
+    this.myInfo = { ...this.myInfoForm.value } as MyInfo;
   }
 
   addHobbies(value = ''): void {

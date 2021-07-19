@@ -10,7 +10,7 @@ export class LoaderService {
 
   constructor() { }
 
-  setLoader(data) {
+  setLoader(data: boolean): void {
     this.spinLoad.next(data);
   }
 }

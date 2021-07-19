@@ -1,4 +1,4 @@
-export interface myInfo {
+export interface MyInfo {
   id: number;
   name: string;
   age: number;

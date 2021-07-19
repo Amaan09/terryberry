@@ -20,7 +20,7 @@ export class ErrorInterceptor implements HttpInterceptor {
   }
 }
 
-export function handleError(error:HttpErrorResponse): Observable<HttpEvent<any>> {
+export function handleError(error: HttpErrorResponse): Observable<HttpEvent<any>> {
   let errorReturned: IError;
   if (error.error instanceof ErrorEvent) {
     console.error('Client error occurred:', error.error.message);
@@ -30,7 +30,7 @@ export function handleError(error:HttpErrorResponse): Observable<HttpEvent<any>>
       statusCode: error.status || 500,
       message: error.error.message || error.message || 'Server Unavailable',
       details: error.error.details || error || 'Error occurred'
-    }
+    };
   }
   return throwError(errorReturned);
 }

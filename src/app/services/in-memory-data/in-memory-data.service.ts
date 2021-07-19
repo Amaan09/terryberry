@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
-import { myInfo } from '../../shared/models/my-info/my-info.model';
+import { MyInfo } from '../../shared/models/my-info/my-info.model';
 
 
 @Injectable({
@@ -11,13 +11,13 @@ export class InMemoryDataService implements InMemoryDbService {
   constructor() { }
 
   createDb() {
-    const myInfo: myInfo = {
+    const myInfo: MyInfo = {
       id: 1,
       name: 'Mohammed Amaan',
       age: 21,
       gender: 'M',
       hobbies: ['Coding', 'Travelling', 'Reading']
-    }
+    };
     return {myInfo};
   }
 

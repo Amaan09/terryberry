@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { LoaderService } from '../../../services/loader/loader.service';
 
 @Component({
-  selector: 'loader',
+  selector: 'app-loader',
   templateUrl: './loader.component.html',
   styleUrls: ['./loader.component.scss']
 })
@@ -21,7 +21,7 @@ export class LoaderComponent implements OnInit, OnDestroy {
         this.spinLoad = loadingStatus;
         this.ref.detectChanges();
       }
-    )
+    );
   }
 
   ngOnDestroy(): void {
