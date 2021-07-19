@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { LoaderService } from '../../../services/loader/loader.service';
 import { MyInfoRepositoryService } from '../../../services/repositories/my-info-repository.service';
 import { myInfo } from '../../../shared/models/my-info/my-info.model';
 
@@ -25,6 +27,7 @@ export class MyInfoComponent implements OnInit {
     { name: 'Hobby', value: 'hobbies', isArray: true },
   ];
   editMode: boolean = false;
+  dataLoaded: boolean = false;
 
   get hobbies(): FormArray {
     return this.myInfoForm.get('hobbies') as FormArray;
@@ -32,7 +35,9 @@ export class MyInfoComponent implements OnInit {
 
   constructor(
     private myInfoService: MyInfoRepositoryService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private loader: LoaderService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -41,27 +46,30 @@ export class MyInfoComponent implements OnInit {
   }
 
   getMyInfo(): void {
+    this.loader.setLoader(true);
     this.myInfoService.getMyInfo().subscribe((myInfo) => {
       this.myInfo = { ...myInfo };
-      this.setFormValues(myInfo);
-    });
+      this.presetFormValues(myInfo);
+      this.loader.setLoader(false);
+      this.dataLoaded = true;
+    }, (error) => {
+      this.toastr.error('Failed to Load data from Server' + error.error.message)
+    }
+    );
   }
 
-  setFormValues(myInfo: myInfo): void {
-
+  presetFormValues(myInfo: myInfo): void {
     const { name, age, gender, hobbies } = myInfo;
 
     this.myInfoForm.patchValue({
       name: name,
       age: age,
-      gender: gender
+      gender: gender,
     });
 
     if (hobbies) {
-      for (const hobby of hobbies)
-        this.addHobbies(hobby);
+      for (const hobby of hobbies) this.addHobbies(hobby);
     }
-
   }
 
   addHobbies(value = ''): void {
@@ -79,7 +87,9 @@ export class MyInfoComponent implements OnInit {
 
   onSubmit(): void {
     this.editMode = !this.editMode;
+    this.toastr.success('Saved Succesfully', 'Toastr fun!');
     this.myInfoService.saveMyInfo(this.myInfoForm.value as myInfo);
+    this.myInfo = { ...this.myInfoForm.value } as myInfo;
   }
 
   private initForm(): void {

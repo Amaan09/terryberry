@@ -1,4 +1,4 @@
-<div class="myinfo-container" fxLayout="row" fxLayoutAlign="center center">
+<div class="myinfo-container" fxLayout="row" fxLayoutAlign="center center" *ngIf="dataLoaded">
 
   <mat-card class="myinfo-card">
     <div class="myinfo-card-heading">
@@ -16,21 +16,30 @@
 
             <div class="myinfo-card-list-subheading" fxFlex="50">
               {{item.name}}
-              <ng-container *ngIf="item.isArray">
-                <button style="margin-left: 5px;" mat-stroked-button (click)="addHobbies()">Add Hobby</button>
-              </ng-container>
+              <button style="margin-left: 5px;"
+                type="button"
+                mat-stroked-button
+                (click)="addHobbies()"
+                *ngIf="item.isArray && editMode">
+                Add Hobby</button>
             </div>
-            <div fxFlex="50" *ngIf="!item.isArray">
+            <div fxFlex="50" *ngIf="!item.isArray && editMode">
               <mat-form-field>
                 <mat-label class="myinfo-card-list-subheading">{{item.name}}</mat-label>
                 <input [id]="item.value" matInput [formControlName]="item.value">
               </mat-form-field>
             </div>
 
+            <div fxFlex="50" *ngIf="!editMode">
+              <span>
+                {{item.isArray && this.myInfo[item.value] ? this.myInfo[item.value].join(', ') : this.myInfo[item.value]}}
+              </span>
+            </div>
+
             <div
               fxFlex="50"
               formArrayName="hobbies"
-              *ngIf="item.isArray">
+              *ngIf="item.isArray && editMode">
 
               <div *ngFor="let hobby of hobbies.controls; let i=index">
                 <mat-form-field>
@@ -40,7 +49,13 @@
                     [id]="item.value + i"
                     [formControlName]="i">
                 </mat-form-field>
-                <button style="margin-left: 5px;" mat-stroked-button (click)="removeHobbies(i)">X</button>
+                <button
+                  style="margin-left: 5px;"
+                  mat-stroked-button
+                  type="button"
+                  (click)="removeHobbies(i)">
+                  X
+                </button>
               </div>
             </div>
           </div>
@@ -51,6 +66,7 @@
             <button
               mat-stroked-button
               color="primary"
+              type="button"
               (click)="editMode = !editMode"
               *ngIf="!editMode">
               Edit
@@ -60,13 +76,15 @@
               mat-stroked-button
               color="primary"
               type="submit"
-              *ngIf="editMode">
+              *ngIf="editMode"
+              [disabled]="myInfoForm.invalid">
               Update
             </button>
 
             <button
               mat-stroked-button
               color="primary"
+              type="button"
               (click)="editMode = !editMode"
               *ngIf="editMode">
               Cancel
