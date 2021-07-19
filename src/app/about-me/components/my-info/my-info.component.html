@@ -29,7 +29,7 @@
             <div
               class="myinfo-card-list-item--subheading"
               fxFlex="50">
-              {{item.name}}
+              {{item.name === 'Hobby' ? 'Hobbies' : item.name}}
 
               <button
                 type="button"
@@ -43,14 +43,55 @@
               fxFlex="50"
               *ngIf="!item.isArray && editMode">
               <mat-form-field>
-                <mat-label
-                  class="myinfo-card-list-item--subheading">
+                <mat-label>
                   {{item.name}}
                 </mat-label>
                 <input
                   [id]="item.value"
                   matInput
                   [formControlName]="item.value">
+                <mat-error
+                  *ngIf="item.value === 'name'
+                  && getFormControl(item.value).hasError('minlength')
+                  && !getFormControl(item.value).hasError('required')
+                  && !getFormControl(item.value).hasError('pattern')">
+                  {{item.name}} should be atleast 4 characters
+                </mat-error>
+
+                <mat-error
+                  *ngIf="item.value === 'name'
+                  && getFormControl(item.value).hasError('maxlength')
+                  && !getFormControl(item.value).hasError('required')
+                  && !getFormControl(item.value).hasError('pattern')">
+                  {{item.name}} should be maximum of 20 characters
+                </mat-error>
+
+                <mat-error
+                  *ngIf="item.value === 'age'
+                  && getFormControl(item.value).hasError('min')
+                  && !getFormControl(item.value).hasError('required')
+                  && !getFormControl(item.value).hasError('pattern')">
+                  {{item.name}} cannot be zero or negative
+                </mat-error>
+
+                <mat-error
+                  *ngIf="item.value === 'age'
+                  && getFormControl(item.value).hasError('max')
+                  && !getFormControl(item.value).hasError('required')
+                  && !getFormControl(item.value).hasError('pattern')">
+                  {{item.name}} cannot be greater than 120
+                </mat-error>
+
+                <mat-error
+                  *ngIf="getFormControl(item.value).hasError('required')">
+                  {{item.name}} is <strong>required*</strong>
+                </mat-error>
+
+                <mat-error
+                  *ngIf="getFormControl(item.value).hasError('pattern')">
+                  {{item.value === 'gender' ? 'Please Enter capital M or F only' : item.name + ' is invalid!' }}
+                </mat-error>
+
               </mat-form-field>
             </div>
 
@@ -77,6 +118,17 @@
                     matInput
                     [id]="item.value + i"
                     [formControlName]="i">
+                    <mat-error
+                      *ngIf="hobbies.controls[i].hasError('required')
+                      && !hobbies.controls[i].hasError('pattern')">
+                      Hobby - {{(i + 1)}} is <strong>required*</strong>
+                    </mat-error>
+
+                    <mat-error
+                      *ngIf="hobbies.controls[i].hasError('pattern')">
+                      Hobby - {{(i + 1)}} is invalid!
+                    </mat-error>
+
                 </mat-form-field>
                 <button
                   mat-stroked-button
@@ -95,7 +147,7 @@
               mat-stroked-button
               color="primary"
               type="button"
-              (click)="editMode = !editMode"
+              (click)="onEdit()"
               *ngIf="!editMode">
               Edit
             </button>
@@ -104,8 +156,9 @@
               mat-stroked-button
               color="primary"
               type="submit"
+              [disabled]="myInfoForm.invalid"
               *ngIf="editMode"
-              [disabled]="myInfoForm.invalid">
+              >
               Update
             </button>
 
@@ -113,7 +166,7 @@
               mat-stroked-button
               color="primary"
               type="button"
-              (click)="editMode = !editMode"
+              (click)="onClear()"
               *ngIf="editMode">
               Cancel
             </button>

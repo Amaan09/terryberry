@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { LoaderService } from '../../../services/loader/loader.service';
 import { MyInfoRepositoryService } from '../../../services/repositories/my-info-repository.service';
@@ -34,6 +34,10 @@ export class MyInfoComponent implements OnInit {
     return this.myInfoForm.get('hobbies') as FormArray;
   }
 
+  getFormControl(formControlName: string): FormControl {
+    return this.myInfoForm.get(formControlName) as FormControl;
+  }
+
   constructor(
     private myInfoService: MyInfoRepositoryService,
     private fb: FormBuilder,
@@ -50,22 +54,20 @@ export class MyInfoComponent implements OnInit {
     this.loader.setLoader(true);
     this.myInfoService.getMyInfo().subscribe(
       (myInfo) => {
-        this.myInfo = { ...myInfo };
-        this.presetFormValues(myInfo);
+        this.myInfo = myInfo;
+        this.presetFormValues();
         this.loader.setLoader(false);
         this.dataLoaded = true;
       },
       (error) => {
-        this.toastr.error(
-          'Failed to Load data from Server'
-        );
-        console.log(error)
+        this.toastr.error('Failed to Load data from Server');
+        console.log(error);
       }
     );
   }
 
-  presetFormValues(myInfo: myInfo): void {
-    const { name, age, gender, hobbies } = myInfo;
+  presetFormValues(): void {
+    const { name, age, gender, hobbies } = this.myInfo;
 
     this.myInfoForm.patchValue({
       name: name,
@@ -73,9 +75,24 @@ export class MyInfoComponent implements OnInit {
       gender: gender,
     });
 
-    if (hobbies) {
-      for (const hobby of hobbies) this.addHobbies(hobby);
-    }
+    if (hobbies) for (const hobby of hobbies) this.addHobbies(hobby);
+  }
+
+  onEdit(): void {
+    this.editMode = !this.editMode;
+  }
+
+  onClear(): void {
+    this.editMode = !this.editMode;
+    this.initForm();
+    this.presetFormValues();
+  }
+
+  onSubmit(): void {
+    this.editMode = !this.editMode;
+    this.toastr.success('Saved Succesfully');
+    this.myInfoService.saveMyInfo(this.myInfoForm.value as myInfo);
+    this.myInfo = { ...this.myInfoForm.value } as myInfo;
   }
 
   addHobbies(value = ''): void {
@@ -89,13 +106,6 @@ export class MyInfoComponent implements OnInit {
 
   removeHobbies(index: number): void {
     this.hobbies.removeAt(index);
-  }
-
-  onSubmit(): void {
-    this.editMode = !this.editMode;
-    this.toastr.success('Saved Succesfully', 'Toastr fun!');
-    this.myInfoService.saveMyInfo(this.myInfoForm.value as myInfo);
-    this.myInfo = { ...this.myInfoForm.value } as myInfo;
   }
 
   private initForm(): void {
@@ -115,16 +125,15 @@ export class MyInfoComponent implements OnInit {
           Validators.required,
           Validators.min(1),
           Validators.max(120),
-          Validators.pattern('^[1-9]+[0-9]*$'),
+          Validators.pattern('^[0-9]+[0-9]*$'),
         ],
       ],
       gender: [
         '',
         [
           Validators.required,
-          Validators.maxLength(1),
-          Validators.pattern('[a-zA-Z ]*'),
-        ],
+          Validators.pattern('^(?:M|F)$')
+        ]
       ],
       hobbies: this.fb.array([]),
     });
