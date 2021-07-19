@@ -7,7 +7,6 @@ import { BehaviorSubject } from 'rxjs';
 export class LoaderService {
 
   public spinLoad = new BehaviorSubject(false);
-  public progLoad = new BehaviorSubject(false);
 
   constructor() { }
 

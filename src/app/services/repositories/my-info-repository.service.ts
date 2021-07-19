@@ -11,7 +11,6 @@ import { catchError, map, subscribeOn, tap } from 'rxjs/operators';
 export class MyInfoRepositoryService {
 
   private myInfoUrl: string = 'api/myInfo';
-  myInfoSaved: boolean = false;
   savedInfo: Observable<myInfo>;
 
   httpOptions = {
@@ -29,7 +28,6 @@ export class MyInfoRepositoryService {
   }
 
   saveMyInfo(data: myInfo) {
-    this.myInfoSaved = true;
     this.savedInfo = new Observable(subscriber => {
       subscriber.next(data);
     })

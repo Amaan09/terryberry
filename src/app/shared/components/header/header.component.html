@@ -1,16 +1,19 @@
 <div fxLayout="row">
-  <mat-toolbar fxLayout="row" fxLayoutAlign="start center">
+  <mat-toolbar
+    class="navbar"
+    fxLayout="row"
+    fxLayoutAlign="start center">
       <span
-        class="tabs"
+        class="navbar-item"
         [routerLink]="['/']"
-        [routerLinkActive]="['active-tab']"
+        [routerLinkActive]="['navbar-item--active']"
         [routerLinkActiveOptions]="{exact:true}">
         Home
       </span>
       <span
-        class="tabs"
+        class="navbar-item"
         [routerLink]="['/aboutme/myinfo']"
-        [routerLinkActive]="['active-tab']"
+        [routerLinkActive]="['navbar-item--active']"
         [routerLinkActiveOptions]="{exact:true}">
         About Me
       </span>

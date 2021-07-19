@@ -1,9 +1,12 @@
-.tabs {
-  cursor: pointer;
-  padding: 0px 16px;
-  border-radius: 24px;
-}
+.navbar {
 
-.active-tab {
-  background-color: white;
+  .navbar-item {
+    cursor: pointer;
+    padding: 0px 16px;
+    border-radius: 24px;
+
+    .navbar-item--active {
+      background-color: white;
+    }
+  }
 }

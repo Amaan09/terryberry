@@ -20,14 +20,15 @@ interface myInfoDetails  {
 export class MyInfoComponent implements OnInit {
   myInfoForm: FormGroup;
   myInfo: myInfo = {} as myInfo;
+  editMode: boolean = false;
+  dataLoaded: boolean = false;
+
   displayedItems: myInfoDetails[] = [
     { name: 'Name', value: 'name', isArray: false },
     { name: 'Age', value: 'age', isArray: false },
     { name: 'Gender', value: 'gender', isArray: false },
     { name: 'Hobby', value: 'hobbies', isArray: true },
   ];
-  editMode: boolean = false;
-  dataLoaded: boolean = false;
 
   get hobbies(): FormArray {
     return this.myInfoForm.get('hobbies') as FormArray;
@@ -47,14 +48,19 @@ export class MyInfoComponent implements OnInit {
 
   getMyInfo(): void {
     this.loader.setLoader(true);
-    this.myInfoService.getMyInfo().subscribe((myInfo) => {
-      this.myInfo = { ...myInfo };
-      this.presetFormValues(myInfo);
-      this.loader.setLoader(false);
-      this.dataLoaded = true;
-    }, (error) => {
-      this.toastr.error('Failed to Load data from Server' + error.error.message)
-    }
+    this.myInfoService.getMyInfo().subscribe(
+      (myInfo) => {
+        this.myInfo = { ...myInfo };
+        this.presetFormValues(myInfo);
+        this.loader.setLoader(false);
+        this.dataLoaded = true;
+      },
+      (error) => {
+        this.toastr.error(
+          'Failed to Load data from Server'
+        );
+        console.log(error)
+      }
     );
   }
 

@@ -1,59 +1,53 @@
 .myinfo-container {
   height: 86%;
-}
 
-.myinfo-card {
-  box-shadow: none;
-  width: 600px;
+  .myinfo-card {
+    box-shadow: none;
+    width: 600px;
 
-  .myinfo-card-heading {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    font-weight: 500;
-    margin-bottom: 24px;
-  }
-
-  .myinfo-card-list-subheading {
-    font-weight: 500;
-  }
-
-  .myinfo-card-list {
-    form {
-      display: contents;
-    }
-    .myinfo-card-list-item {
-      width: 100%;
-      margin-bottom: 32px;
-      border-bottom: 1px solid lightgrey;
-
-    }
-
-    .myinfo-card-list-item-edit {
-      cursor: pointer;
-    }
-
-    .myinfo-card-list-item-close {
-      cursor: pointer;
-      transform: scale(1.3);
-    }
-
-    .myinfo-card-list-item-subheading {
+    .myinfo-card-heading {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
       font-weight: 500;
+      margin-bottom: 24px;
     }
 
-    .myinfo-card-list-actions {
-      width: 100%;
-      button {
-        margin-right: 5px;
+    .myinfo-card-list {
+
+      form {
+        display: contents;
+      }
+
+      .myinfo-card-list-item {
+        width: 100%;
+        margin-bottom: 32px;
+        border-bottom: 1px solid lightgrey;
+
+        .myinfo-card-list-item--subheading {
+          font-weight: 500;
+
+          button {
+            margin-left: 5px;
+          }
+        }
+
+        .myinfo-card-list-item--hobbies {
+          button {
+            margin-left: 5px;
+          }
+        }
+      }
+
+      .myinfo-card-list-actions {
+        width: 100%;
+
+        button {
+          margin-right: 5px;
+        }
       }
     }
   }
-
-}
-
-.mat-card-header-text {
-  margin: 0;
 }

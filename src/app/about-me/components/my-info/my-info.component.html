@@ -1,12 +1,24 @@
-<div class="myinfo-container" fxLayout="row" fxLayoutAlign="center center" *ngIf="dataLoaded">
+<div
+  class="myinfo-container"
+  fxLayout="row"
+  fxLayoutAlign="center center"
+  *ngIf="dataLoaded">
 
-  <mat-card class="myinfo-card">
-    <div class="myinfo-card-heading">
+  <mat-card
+    class="myinfo-card">
+    <div
+      class="myinfo-card-heading">
       My Info
     </div>
 
-      <div class="myinfo-card-list" fxLayout="column" fxLayoutAlign="space-between start">
-        <form [formGroup]="myInfoForm" (ngSubmit)="onSubmit()">
+      <div
+        class="myinfo-card-list"
+        fxLayout="column"
+        fxLayoutAlign="space-between start">
+
+        <form
+          [formGroup]="myInfoForm"
+          (ngSubmit)="onSubmit()">
 
           <div
             class="myinfo-card-list-item"
@@ -14,23 +26,37 @@
             fxLayoutAlign="space-between center"
             *ngFor="let item of displayedItems">
 
-            <div class="myinfo-card-list-subheading" fxFlex="50">
+            <div
+              class="myinfo-card-list-item--subheading"
+              fxFlex="50">
               {{item.name}}
-              <button style="margin-left: 5px;"
+
+              <button
                 type="button"
                 mat-stroked-button
                 (click)="addHobbies()"
                 *ngIf="item.isArray && editMode">
                 Add Hobby</button>
+
             </div>
-            <div fxFlex="50" *ngIf="!item.isArray && editMode">
+            <div
+              fxFlex="50"
+              *ngIf="!item.isArray && editMode">
               <mat-form-field>
-                <mat-label class="myinfo-card-list-subheading">{{item.name}}</mat-label>
-                <input [id]="item.value" matInput [formControlName]="item.value">
+                <mat-label
+                  class="myinfo-card-list-item--subheading">
+                  {{item.name}}
+                </mat-label>
+                <input
+                  [id]="item.value"
+                  matInput
+                  [formControlName]="item.value">
               </mat-form-field>
             </div>
 
-            <div fxFlex="50" *ngIf="!editMode">
+            <div
+              fxFlex="50"
+              *ngIf="!editMode">
               <span>
                 {{item.isArray && this.myInfo[item.value] ? this.myInfo[item.value].join(', ') : this.myInfo[item.value]}}
               </span>
@@ -40,17 +66,19 @@
               fxFlex="50"
               formArrayName="hobbies"
               *ngIf="item.isArray && editMode">
-
-              <div *ngFor="let hobby of hobbies.controls; let i=index">
+              <div
+                class="myinfo-card-list-item--hobbies"
+                *ngFor="let hobby of hobbies.controls; let i=index">
                 <mat-form-field>
-                  <mat-label>{{item.name + ' - ' + (i +1)}}</mat-label>
+                  <mat-label>
+                    {{item.name + ' - ' + (i +1)}}
+                  </mat-label>
                   <input
                     matInput
                     [id]="item.value + i"
                     [formControlName]="i">
                 </mat-form-field>
                 <button
-                  style="margin-left: 5px;"
                   mat-stroked-button
                   type="button"
                   (click)="removeHobbies(i)">
