@@ -60,20 +60,14 @@ export class EditInfoComponent implements OnInit {
   }
 
   onClearInfo(): void {
-    this.sharedDataService.changeMyInfo({
-      data: { ...this.myInfo },
-      submit: false,
-    });
+    this.sharedDataService.changeMyInfo({...this.myInfo});
   }
 
   onSubmitInfo(): void {
     this.toastr.success('Info Saved Succesfully', 'Success');
     this.myInfoService.saveMyInfo(this.myInfoForm.value as MyInfo);
     this.myInfo = { ...this.myInfoForm.value } as MyInfo;
-    this.sharedDataService.changeMyInfo({
-      data: { ...this.myInfo },
-      submit: true,
-    });
+    this.sharedDataService.changeMyInfo({...this.myInfo});
   }
 
   addHobbies(value = ''): void {

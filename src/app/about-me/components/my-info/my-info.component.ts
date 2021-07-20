@@ -35,8 +35,8 @@ export class MyInfoComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.getMyInfo();
     this.myInfoSubscription = this.sharedDataService.myInfoChanged.subscribe(
-      (data) => {
-        this.myInfo = data.data;
+      (data: MyInfo) => {
+        this.myInfo = data;
         this.onEditInfo();
       }
     );

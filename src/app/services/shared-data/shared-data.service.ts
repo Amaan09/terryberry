@@ -6,14 +6,11 @@ import { MyInfo } from '../../shared/models/my-info/my-info.model';
   providedIn: 'root',
 })
 export class SharedDataService {
-  private myInfoChangedSubject = new Subject<{
-    data: MyInfo;
-    submit: boolean;
-  }>();
+  private myInfoChangedSubject = new Subject<MyInfo>();
 
   public myInfoChanged = this.myInfoChangedSubject.asObservable();
 
-  changeMyInfo(data: { data: MyInfo; submit: boolean }): void {
+  changeMyInfo(data: MyInfo): void {
     this.myInfoChangedSubject.next(data);
   }
 }
