@@ -4,12 +4,14 @@ import {
   HttpRequest,
   HttpHandler,
   HttpResponse,
+  HttpEvent,
 } from '@angular/common/http';
 import { finalize, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class LoggingInterceptor implements HttpInterceptor {
-  intercept(req: HttpRequest<any>, next: HttpHandler) {
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const startTime = Date.now();
     let status: string;
 
@@ -39,7 +41,7 @@ export class LoggingInterceptor implements HttpInterceptor {
       })
     );
   }
-  private logDetails(msg: string) {
+  private logDetails(msg: string): void {
     console.log(msg);
   }
 }

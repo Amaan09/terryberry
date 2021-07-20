@@ -10,7 +10,7 @@ export class InMemoryDataService implements InMemoryDbService {
 
   constructor() { }
 
-  createDb() {
+  createDb(): any {
     const myInfo: MyInfo = {
       id: 1,
       name: 'Mohammed Amaan',

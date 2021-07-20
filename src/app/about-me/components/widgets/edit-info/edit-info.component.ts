@@ -47,12 +47,16 @@ export class EditInfoComponent implements OnInit {
     const { name, age, gender, hobbies } = this.myInfo;
 
     this.myInfoForm.patchValue({
-      name: name,
-      age: age,
-      gender: gender,
+      name,
+      age,
+      gender
     });
 
-    if (hobbies) for (const hobby of hobbies) this.addHobbies(hobby);
+    if (hobbies) {
+      for (const hobby of hobbies) {
+        this.addHobbies(hobby);
+      }
+    }
   }
 
   onClearInfo(): void {

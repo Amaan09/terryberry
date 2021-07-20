@@ -61,7 +61,7 @@ export class MyInfoComponent implements OnInit, OnDestroy {
     this.editMode = !this.editMode;
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.myInfoSubscription.unsubscribe();
   }
 }

@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class MyInfoRepositoryService {
 
-  private myInfoUrl: string = 'api/myInfo';
+  private myInfoUrl = 'api/myInfo';
   savedInfo: Observable<MyInfo>;
 
   httpOptions = {
@@ -19,8 +19,9 @@ export class MyInfoRepositoryService {
   constructor(private http: HttpClient) { }
 
   getMyInfo(): Observable<MyInfo> {
-    if (this.savedInfo)
+    if (this.savedInfo) {
       return this.savedInfo;
+    }
 
     return this.http.get<MyInfo>(this.myInfoUrl);
   }
