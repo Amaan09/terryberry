@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class MyInfoRepositoryService {
 
-  private myInfoUrl: string = 'api/myIno';
+  private myInfoUrl: string = 'api/myInfo';
   savedInfo: Observable<MyInfo>;
 
   httpOptions = {
