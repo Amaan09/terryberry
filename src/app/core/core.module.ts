@@ -13,6 +13,8 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [
     CommonModule,
     RouterModule,
+
+    // material module
     MatButtonModule
   ]
 })

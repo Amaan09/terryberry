@@ -15,12 +15,18 @@ import { ViewInfoComponent } from './components/widgets/view-info/view-info.comp
 import { EditInfoComponent } from './components/widgets/edit-info/edit-info.component';
 
 @NgModule({
-  declarations: [MyInfoComponent, ViewInfoComponent, EditInfoComponent],
+  declarations: [
+    MyInfoComponent,
+    ViewInfoComponent,
+    EditInfoComponent
+  ],
   imports: [
     CommonModule,
     AboutMeRoutingModule,
     ReactiveFormsModule,
     FlexLayoutModule,
+
+    // material modules
     MatCardModule,
     MatButtonModule,
     MatInputModule,
