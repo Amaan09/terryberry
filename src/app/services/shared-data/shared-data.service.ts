@@ -11,7 +11,7 @@ export class SharedDataService {
 
   public myInfoChanged = this._myInfoChanged.asObservable();
 
-  changeMyInfo(data: MyInfo) {
+  changeMyInfo(data) {
     this._myInfoChanged.next(data);
   }
 
