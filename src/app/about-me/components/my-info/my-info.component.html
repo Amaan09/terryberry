@@ -108,7 +108,6 @@
               formArrayName="hobbies"
               *ngIf="item.isArray && editMode">
               <div
-                class="myinfo-card-list-item--hobbies"
                 *ngFor="let hobby of hobbies.controls; let i=index">
                 <mat-form-field>
                   <mat-label>
@@ -131,6 +130,7 @@
 
                 </mat-form-field>
                 <button
+                  class="myinfo-card-list-item--remove"
                   mat-stroked-button
                   type="button"
                   (click)="removeHobbies(i)">
@@ -153,6 +153,7 @@
             </button>
 
             <button
+              class="myinfo-card-list-actions--update"
               mat-stroked-button
               color="primary"
               type="submit"

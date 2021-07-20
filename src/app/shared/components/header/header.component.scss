@@ -1,9 +1,11 @@
 .navbar {
 
+  background: transparent;
+
   .navbar-item {
     cursor: pointer;
-    padding: 0px 16px;
-    border-radius: 24px;
+    padding: 0 1.6rem;
+    border-radius: 2.4rem;
   }
 
   .navbar-item--active {

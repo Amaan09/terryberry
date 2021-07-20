@@ -1,18 +1,20 @@
 .myinfo-container {
-  height: 86%;
+  height: 85vh;
 
   .myinfo-card {
     box-shadow: none;
-    width: 600px;
+    width: 60rem;
+    max-height: 100%;
+    overflow: auto;
 
     .myinfo-card-heading {
       display: flex;
       flex-direction: row;
       justify-content: center;
       align-items: center;
-      font-size: 24px;
+      font-size: 2.4rem;
       font-weight: 500;
-      margin-bottom: 24px;
+      margin-bottom: 2.4rem;
     }
 
     .myinfo-card-list {
@@ -23,40 +25,53 @@
 
       .myinfo-card-list-item {
         width: 100%;
-        margin-bottom: 32px;
-        border-bottom: 1px solid lightgrey;
+        margin-bottom: 3.2rem;
+        border-bottom: .1rem solid lightgrey;
 
         .myinfo-card-list-item--subheading {
           font-weight: 500;
 
           button {
-            margin-left: 5px;
+            margin-left: .5rem;
           }
         }
 
-        .myinfo-card-list-item--hobbies {
-          button {
-            margin-left: 5px;
-          }
+        .myinfo-card-list-item--remove {
+          margin-left: .5rem;
         }
       }
 
       .myinfo-card-list-actions {
         width: 100%;
 
-        button {
-          margin-right: 5px;
+        .myinfo-card-list-actions--update {
+          margin-right: .5rem;
+        }
+
+        .myinfo-card-list-actions--update:disabled,
+        .myinfo-card-list-actions--update[disabled] {
+          cursor: not-allowed;
         }
       }
     }
   }
 }
 
-button:disabled,
-button[disabled] {
-  cursor: not-allowed;
-}
+@media only screen and (max-width: 600px) {
 
-.error-label {
-  color: red;
+  .myinfo-container .myinfo-card .myinfo-card-list .myinfo-card-list-item .mat-form-field {
+    width: 16rem;
+  }
+
+  .myinfo-container .myinfo-card .myinfo-card-list .myinfo-card-list-item .myinfo-card-list-item--remove {
+    margin: 0 0 .5rem 0;
+  }
+
+  .myinfo-container .myinfo-card .myinfo-card-list .myinfo-card-list-item .myinfo-card-list-item--subheading {
+    button {
+      margin: 0;
+      display: block;
+      text-align: left;
+    }
+  }
 }

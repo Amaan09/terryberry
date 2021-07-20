@@ -1,0 +1,45 @@
+.background-video {
+  z-index: -1;
+  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  filter:opacity(60%);
+}
+
+.viewport-header {
+  position: relative;
+  height: 80vh;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .myinfo-button {
+    padding: 10px 50px;
+    font-size: large;
+    animation: moveInBottom .5s ease-out .75s;
+    animation-fill-mode: backwards;
+
+    &:hover {
+      transform: translateY(-.2rem);
+      box-shadow: 0 1rem 2rem rgba(black, .2);
+    }
+  }
+}
+
+
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
