@@ -2,24 +2,12 @@
   height: 85vh;
 
   .myinfo-card {
-    box-shadow: none;
-    width: 60rem;
-    max-height: 100%;
-    overflow: auto;
+     box-shadow: none;
+     width: 60rem;
+     max-height: 100%;
+     overflow: auto;
 
-    .myinfo-toggle {
-      margin-left: 1.6rem;
-      mat-icon {
-        margin-right: 2rem;
-        cursor: pointer;
-        color: grey;
-      }
-      .myinfo-toggle--active {
-        color: darkturquoise;
-      }
-    }
-
-    .myinfo-card-heading {
+    .myinfo-card--heading {
       display: flex;
       flex-direction: row;
       justify-content: center;
@@ -29,61 +17,18 @@
       margin-bottom: 2.4rem;
     }
 
-    .myinfo-card-list {
+    .myinfo-card-toggle {
+      margin-left: 1.6rem;
 
-      form {
-        display: contents;
+      mat-icon {
+        margin-right: 2rem;
+        cursor: pointer;
+        color: grey;
       }
 
-      .myinfo-card-list-item {
-        width: 100%;
-        margin-bottom: 3.2rem;
-        border-bottom: .1rem solid lightgrey;
-
-        .myinfo-card-list-item--subheading {
-          font-weight: 500;
-
-          button {
-            margin-left: .5rem;
-          }
-        }
-
-        .myinfo-card-list-item--remove {
-          margin-left: .5rem;
-        }
+      .myinfo-card-toggle--active {
+        color: darkturquoise;
       }
-
-      .myinfo-card-list-actions {
-        width: 100%;
-
-        .myinfo-card-list-actions--update {
-          margin-right: .5rem;
-        }
-
-        .myinfo-card-list-actions--update:disabled,
-        .myinfo-card-list-actions--update[disabled] {
-          cursor: not-allowed;
-        }
-      }
-    }
-  }
-}
-
-@media only screen and (max-width: 600px) {
-
-  .myinfo-container .myinfo-card .myinfo-card-list .myinfo-card-list-item .mat-form-field {
-    width: 16rem;
-  }
-
-  .myinfo-container .myinfo-card .myinfo-card-list .myinfo-card-list-item .myinfo-card-list-item--remove {
-    margin: 0 0 .5rem 0;
-  }
-
-  .myinfo-container .myinfo-card .myinfo-card-list .myinfo-card-list-item .myinfo-card-list-item--subheading {
-    button {
-      margin: 0;
-      display: block;
-      text-align: left;
     }
   }
 }

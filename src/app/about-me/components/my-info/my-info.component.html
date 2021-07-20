@@ -6,20 +6,20 @@
   <mat-card
     class="myinfo-card">
     <div
-      class="myinfo-card-heading">
+      class="myinfo-card--heading">
       My Info
     </div>
     <div
-      class="myinfo-toggle"
+      class="myinfo-card-toggle"
       fxLayout="row"
       fxLayoutAlign="end">
       <mat-icon
-        [ngClass]="{'myinfo-toggle--active': !editMode}"
+        [ngClass]="{'myinfo-card-toggle--active': !editMode}"
         (click)="onEditInfo()">
         visibility
       </mat-icon>
       <mat-icon
-        [ngClass]="{'myinfo-toggle--active': editMode}"
+        [ngClass]="{'myinfo-card-toggle--active': editMode}"
         (click)="onEditInfo()">
         edit
       </mat-icon>

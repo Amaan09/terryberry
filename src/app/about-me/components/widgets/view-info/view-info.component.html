@@ -1,26 +1,22 @@
-<mat-card
-    class="myinfo-card">
+<div
+  class="view-info"
+  fxLayout="column"
+  fxLayoutAlign="space-between start">
+    <div
+      class="view-info-list"
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+      *ngFor="let item of displayedItems">
 
-  <div
-    class="myinfo-card-list"
-    fxLayout="column"
-    fxLayoutAlign="space-between start">
       <div
-        class="myinfo-card-list-item"
-        fxLayout="row"
-        fxLayoutAlign="space-between center"
-        *ngFor="let item of displayedItems">
-
-        <div
-          class="myinfo-card-list-item--subheading"
-          fxFlex="50">
-          {{item.name === 'Hobby' ? 'Hobbies' : item.name}}
-
-        </div>
-        <div
-          fxFlex="50">
-          {{item.isArray && this.myInfo[item.value] ? this.myInfo[item.value].join(', ') : this.myInfo[item.value]}}
-        </div>
+        class="view-info-list--subheading"
+        fxFlex="50">
+        {{item.name}}
       </div>
-  </div>
-</mat-card>
+      <div
+        fxFlex="50">
+        {{item.isArray && this.myInfo[item.value] ? this.myInfo[item.value].join(', ') : this.myInfo[item.value]}}
+      </div>
+    </div>
+</div>
+

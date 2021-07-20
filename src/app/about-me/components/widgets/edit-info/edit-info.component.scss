@@ -1,1 +1,55 @@
-@import "../../my-info/my-info.component.scss"
+.edit-info {
+
+  form {
+    display: contents;
+  }
+
+  .edit-info-list {
+    width: 100%;
+    margin-bottom: 3.2rem;
+    border-bottom: .1rem solid lightgrey;
+
+    .edit-info-list--subheading {
+      font-weight: 500;
+
+      button {
+        margin-left: .5rem;
+      }
+    }
+
+    .edit-info-list--remove {
+      margin-left: .5rem;
+    }
+  }
+
+  .edit-info-actions {
+    width: 100%;
+
+    .edit-info-actions--update {
+      margin-right: 0.5rem;
+    }
+
+    .edit-info-actions--update:disabled,
+    .edit-info-actions--update[disabled] {
+      cursor: not-allowed;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+
+  .edit-info .edit-info-list .edit-info-list--input {
+    width: 16rem;
+  }
+
+  .edit-info .edit-info-list .edit-info-list--remove {
+    margin: 0 0 .5rem 0;
+  }
+
+  .edit-info .edit-info-list .edit-info-list--subheading {
+    button {
+      margin: 0;
+      display: block;
+    }
+  }
+}
