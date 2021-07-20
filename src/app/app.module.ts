@@ -17,9 +17,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoaderComponent } from './shared/components/loader/loader.component';
 import { InMemoryDataService } from './services/in-memory-data/in-memory-data.service';
 import { httpInterceptorProviders } from './interceptors/index';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, LoaderComponent],
+  declarations: [AppComponent, HeaderComponent, LoaderComponent, HomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
