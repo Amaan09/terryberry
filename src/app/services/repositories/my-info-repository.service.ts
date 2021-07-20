@@ -2,16 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { MyInfo } from '../../shared/models/my-info/my-info.model';
-import { Observable, of } from 'rxjs';
-import { catchError, map, subscribeOn, tap } from 'rxjs/operators';
-import { handleError } from '../../interceptors/error.interceptor';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MyInfoRepositoryService {
 
-  private myInfoUrl: string = 'api/myInfo';
+  private myInfoUrl: string = 'api/myIno';
   savedInfo: Observable<MyInfo>;
 
   httpOptions = {
@@ -24,11 +22,7 @@ export class MyInfoRepositoryService {
     if (this.savedInfo)
       return this.savedInfo;
 
-    return this.http.get<MyInfo>(this.myInfoUrl)
-      .pipe(
-        map((result) => result as any),
-        catchError(error => handleError(error))
-      );
+    return this.http.get<MyInfo>(this.myInfoUrl);
   }
 
   saveMyInfo(data: MyInfo): void {

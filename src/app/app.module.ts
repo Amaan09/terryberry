@@ -16,7 +16,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoaderComponent } from './shared/components/loader/loader.component';
 import { InMemoryDataService } from './services/in-memory-data/in-memory-data.service';
-import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { httpInterceptorProviders } from './interceptors/index';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, LoaderComponent],
@@ -34,11 +34,7 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
     FlexLayoutModule,
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ErrorInterceptor,
-      multi: true,
-    },
+    httpInterceptorProviders
   ],
   bootstrap: [AppComponent],
 })

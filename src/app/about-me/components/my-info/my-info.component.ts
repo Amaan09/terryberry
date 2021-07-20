@@ -60,8 +60,8 @@ export class MyInfoComponent implements OnInit {
         this.dataLoaded = true;
       },
       (error) => {
-        this.toastr.error('Failed to Load data from Server', 'Error');
-        console.log(error);
+        this.toastr.error('Failed to Load Data ' + error?.message, 'Error');
+        this.loader.setLoader(false);
       }
     );
   }
