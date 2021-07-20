@@ -60,7 +60,7 @@ export class MyInfoComponent implements OnInit {
         this.dataLoaded = true;
       },
       (error) => {
-        this.toastr.error('Failed to Load data from Server');
+        this.toastr.error('Failed to Load data from Server', 'Error');
         console.log(error);
       }
     );
@@ -78,19 +78,19 @@ export class MyInfoComponent implements OnInit {
     if (hobbies) for (const hobby of hobbies) this.addHobbies(hobby);
   }
 
-  onEdit(): void {
+  onEditInfo(): void {
     this.editMode = !this.editMode;
   }
 
-  onClear(): void {
+  onClearInfo(): void {
     this.editMode = !this.editMode;
     this.initForm();
     this.presetFormValues();
   }
 
-  onSubmit(): void {
+  onSubmitInfo(): void {
     this.editMode = !this.editMode;
-    this.toastr.success('Saved Succesfully');
+    this.toastr.success('Info Saved Succesfully', 'Success');
     this.myInfoService.saveMyInfo(this.myInfoForm.value as MyInfo);
     this.myInfo = { ...this.myInfoForm.value } as MyInfo;
   }
@@ -105,6 +105,10 @@ export class MyInfoComponent implements OnInit {
   }
 
   removeHobbies(index: number): void {
+    if (this.hobbies.controls.length === 1) {
+      this.toastr.error('Hobbies Should Be Atleast One', 'Error')
+      return;
+    }
     this.hobbies.removeAt(index);
   }
 

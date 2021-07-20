@@ -18,7 +18,7 @@
 
         <form
           [formGroup]="myInfoForm"
-          (ngSubmit)="onSubmit()">
+          (ngSubmit)="onSubmitInfo()">
 
           <div
             class="myinfo-card-list-item"
@@ -147,7 +147,7 @@
               mat-stroked-button
               color="primary"
               type="button"
-              (click)="onEdit()"
+              (click)="onEditInfo()"
               *ngIf="!editMode">
               Edit
             </button>
@@ -166,7 +166,7 @@
               mat-stroked-button
               color="primary"
               type="button"
-              (click)="onClear()"
+              (click)="onClearInfo()"
               *ngIf="editMode">
               Cancel
             </button>

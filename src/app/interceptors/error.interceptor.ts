@@ -22,14 +22,14 @@ export class ErrorInterceptor implements HttpInterceptor {
 
 export function handleError(error: HttpErrorResponse): Observable<HttpEvent<any>> {
   let errorReturned: IError;
-  if (error.error instanceof ErrorEvent) {
-    console.error('Client error occurred:', error.error.message);
+  if (error?.error instanceof ErrorEvent) {
+    console.error('Client error occurred:', error?.error?.message);
   } else {
     console.error('Server error occured:', error);
     errorReturned = {
-      statusCode: error.status || 500,
-      message: error.error.message || error.message || 'Server Unavailable',
-      details: error.error.details || error || 'Error occurred'
+      statusCode: error?.status || 500,
+      message: error?.error?.message || error?.message || 'Server Unavailable',
+      details: error?.error?.details || error || 'Error occurred'
     };
   }
   return throwError(errorReturned);
