@@ -93,8 +93,8 @@ export class EditInfoComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.minLength(4),
-          Validators.maxLength(20),
+          Validators.minLength(1),
+          Validators.maxLength(100),
           Validators.pattern('[a-zA-Z ]*'),
         ],
       ],
