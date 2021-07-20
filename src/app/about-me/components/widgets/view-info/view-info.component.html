@@ -1,0 +1,26 @@
+<mat-card
+    class="myinfo-card">
+
+  <div
+    class="myinfo-card-list"
+    fxLayout="column"
+    fxLayoutAlign="space-between start">
+      <div
+        class="myinfo-card-list-item"
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+        *ngFor="let item of displayedItems">
+
+        <div
+          class="myinfo-card-list-item--subheading"
+          fxFlex="50">
+          {{item.name === 'Hobby' ? 'Hobbies' : item.name}}
+
+        </div>
+        <div
+          fxFlex="50">
+          {{item.isArray && this.myInfo[item.value] ? this.myInfo[item.value].join(', ') : this.myInfo[item.value]}}
+        </div>
+      </div>
+  </div>
+</mat-card>

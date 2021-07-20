@@ -18,14 +18,14 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { LoaderComponent } from './shared/components/loader/loader.component';
 import { HeaderComponent } from './shared/components/header/header.component';
-import { HomeComponent } from './home/home.component';
+import { CoreModule } from './core/core.module';
+import { AboutMeModule } from './about-me/about-me.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    LoaderComponent,
-    HomeComponent
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -37,6 +37,8 @@ import { HomeComponent } from './home/home.component';
     }),
     ToastrModule.forRoot(),
     FlexLayoutModule,
+    CoreModule,
+    AboutMeModule,
 
     // material modules
     MatToolbarModule,

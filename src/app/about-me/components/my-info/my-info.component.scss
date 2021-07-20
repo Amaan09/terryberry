@@ -7,6 +7,18 @@
     max-height: 100%;
     overflow: auto;
 
+    .myinfo-toggle {
+      margin-left: 1.6rem;
+      mat-icon {
+        margin-right: 2rem;
+        cursor: pointer;
+        color: grey;
+      }
+      .myinfo-toggle--active {
+        color: darkturquoise;
+      }
+    }
+
     .myinfo-card-heading {
       display: flex;
       flex-direction: row;
