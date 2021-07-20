@@ -38,21 +38,6 @@
             [id]="item.value"
             matInput
             [formControlName]="item.value">
-          <mat-error
-            *ngIf="item.value === 'name'
-            && getFormControl(item.value).hasError('minlength')
-            && !getFormControl(item.value).hasError('required')
-            && !getFormControl(item.value).hasError('pattern')">
-            {{item.name}} should be atleast 1 character
-          </mat-error>
-
-          <mat-error
-            *ngIf="item.value === 'name'
-            && getFormControl(item.value).hasError('maxlength')
-            && !getFormControl(item.value).hasError('required')
-            && !getFormControl(item.value).hasError('pattern')">
-            {{item.name}} should be maximum of 100 characters
-          </mat-error>
 
           <mat-error
             *ngIf="item.value === 'age'
